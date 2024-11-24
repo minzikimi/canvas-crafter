@@ -1,21 +1,67 @@
-canvas {
-  border :2px solid black;
+@font-face {
+  font-family: Okinesans;
+  src: url(./font/MADEOkineSansPERSONALUSE-Medium.otf);
 }
 
+*{
+  font-family: "Okinesans", sans-serif;
+}
 
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.color-option{
-   width: 50px;
-   height: 50px;
+  flex-direction: column;
+  background-color: #fafafa; 
+  margin:0;
+  color:#7c73e6; 
+  
+  }
+
+h1{
+  font-size:3rem;
+  margin:1rem;
 }
 
-.button-wrapper{
+canvas {
+  border: 2rem solid  #c4c1e0; 
+  border-radius: 10px; /* Rounded corners */
+  background-color: white;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+} 
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+}
+
+.color-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px; 
+  cursor: pointer; 
+}
+
+.button-wrapper {
   display: flex;
   flex-direction: column;
-  gap:3rem;
-  padding:2rem;
+  gap: 3rem;
+
+}
+
+button {
+  background-color: #7c73e6; 
+  color: #ffe9e3; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px; 
+  cursor: pointer;
+  font-size: 2rem; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+button:hover {
+  background-color: #5a54c1; 
+  transform: scale(1.05); 
 }
