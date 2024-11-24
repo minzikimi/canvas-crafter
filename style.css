@@ -116,6 +116,11 @@ canvas {
     color:var(--dark-purple);
     transform :scale(1.05); 
   }
+  label:hover{
+    background-color: var(--white);
+    color:var(--dark-purple);
+    transform :scale(1.05); 
+  }
 } 
 
 #save {
