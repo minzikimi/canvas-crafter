@@ -3,7 +3,21 @@
   src: url(./font/MADEOkineSansPERSONALUSE-Medium.otf);
 }
 
-*{
+:root {
+  /* Colors */
+  --white: #fafafa;
+  --dark-purple: #AB42F4; 
+  --light-purple: #CF98F4;
+  --sky-blue: #8DF3FA;
+
+  /* Fonts */
+  --font-themed: "Okinesans", sans-serif;
+  --font-korean: "NotoSansKR", sans-serif;
+  --font-main: "NeueHaas", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+}
+
+* {
   font-family: "Okinesans", sans-serif;
 }
 
@@ -12,56 +26,103 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #fafafa; 
-  margin:0;
-  color:#7c73e6; 
-  
-  }
+  background-image: url("img/rm301-nunny-01.jpg"); /* Path to your background image */
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  margin: 0;
+}
 
-h1{
-  font-size:3rem;
+h1 {
+  font-size: 3.5rem;
+  color: var(--sky-blue);
   margin:1rem;
 }
 
 canvas {
-  border: 2rem solid  #c4c1e0; 
-  border-radius: 10px; /* Rounded corners */
+  border: 1.5rem solid var(--light-purple);
+  border-radius: 10px; 
   background-color: white;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 } 
 
 .container {
+  padding-top:1rem;
   display: flex;
   flex-direction: row;
-  gap: 5rem;
+  gap: 3rem;
 }
 
+.color-palette{
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  align-items: center;
+}
 .color-option {
   width: 50px;
   height: 50px;
-  border-radius: 10px; 
+  border-radius: 25px; 
+  border:3px solid white;
+  gap:1rem;
   cursor: pointer; 
+  transition: transform ease-in-out .3s;
 }
 
-.button-wrapper {
+.color-option:hover{
+  transform:scale(1.2);
+}
+
+.button-wrapper{
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 3rem;
 
+  button,label {
+    background-color: var(--dark-purple); 
+    color: var(--white);
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px; 
+    cursor: pointer;
+    font-size: 2rem; 
+    transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
-button {
-  background-color: #7c73e6; 
-  color: #ffe9e3; 
-  border: none; 
-  border-radius: 5px; 
-  padding: 10px; 
-  cursor: pointer;
-  font-size: 2rem; 
-  transition: background-color 0.3s ease, transform 0.3s ease; 
+  label{
+    text-align: center;
+  }
+
+  input[type="file"] {
+    display: none;
+}
+  input[type="text"] {
+    
+    color: var(--dark-purple); 
+    font-size:1.5rem; 
+    height:60px; 
+    border:0.5rem solid var(--sky-blue);
+    border-radius:5px; 
+    padding:10px; 
+    cursor:pointer;
+  }
+  input[type="text"]::placeholder {
+    color: var(--dark-purple);
+    font-size:1rem; 
+}
+  button:hover {
+    background-color: var(--white);
+    color:var(--dark-purple);
+    transform :scale(1.05); 
+  }
+} 
+
+#save {
+   background-color:#F8F454;
+   color :var(--dark-purple);
 }
 
-button:hover {
-  background-color: #5a54c1; 
-  transform: scale(1.05); 
+footer p {
+   color :var(--dark-purple);
 }

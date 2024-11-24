@@ -6,13 +6,16 @@ const color = document.querySelector("#color")
 const modeBtn = document.querySelector("#mode-btn");
 const resetBtn = document.querySelector("#reset-btn");
 const eraseBtn = document.querySelector("#erase-btn");
+const fileInput = document.querySelector("#file");
+const textInput = document.querySelector("#text");
+const saveBtn=document.querySelector("#save");
 
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 800;
 
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
-
+ctx.lineCap="round"
 ctx.lineWidth=lineWidth.value;
 
 const colors = [
@@ -31,6 +34,8 @@ const colors = [
 let isPainting = false;
 let isfilling = false;
 
+saveBtn.addEventListener("click", onSaveClick);
+canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown",onMouseDown );
 canvas.addEventListener("mouseup",cancelPainting);
@@ -40,18 +45,52 @@ color.addEventListener("change",onColorChange);
 colorOptions.forEach(color=>{
   color.addEventListener("click", onColorClick);
 })
-
 eraseBtn.addEventListener("click", onEraseClick)
 modeBtn.addEventListener("click", onModeClick);
 resetBtn.addEventListener("click", onResetClick);
 canvas.addEventListener("click", onCanvasClick);
+fileInput.addEventListener("change", onFileChange);
+
+
+function onSaveClick(){
+  const url=canvas.toDataURL();
+  const a = document.createElement("a");
+  a.href=url;
+  a.download="myDrawing.png"
+  a.click();
+}
+
+function onDoubleClick(event){
+  if(text){
+    ctx.save();
+    const text=textInput.value;
+    ctx.lineWidth=1;
+    ctx.font = "48px serif";
+    ctx.strokeText(text,event.offsetX, event.offsetY);
+    ctx.restore();
+  }
+  return;
+}
+
+function onFileChange(event){
+  console.dir(event.target); 
+
+  const file = event.target.files[0];
+  const url=URL.createObjectURL(file);
+  console.log(url);
+  const image = new Image;
+  image.src=url;
+  image.onload=function (){
+    ctx.drawImage(image,0, 0,CANVAS_WIDTH,CANVAS_HEIGHT);
+    fileInput.value=0;
+  }
+}
 
 function onEraseClick(){
   ctx.strokeStyle="white"
   isfilling=false;
   modeBtn.textContent="Fill"
 }
-
 
 function onResetClick(){
   ctx.fillStyle="white";
@@ -74,27 +113,6 @@ function onModeClick(){
   }
 }
 
-
-// function onClick(event){
-//   console.log(event);
-
-//   ctx.beginPath();
-
-//   ctx.moveTo(0,0);
-//   const color= colors[Math.floor(Math.random()*colors.length)]
-
-//   ctx.strokeStyle= color;
-
-//   ctx.lineTo(event.offsetX, event.offsetY);
-//   ctx.stroke();//when u make line u need to stroke
-// }
-
-// canvas.addEventListener("click", onClick);
-
-
-
-
-
 function onMove(event){
 
   if(isPainting){
@@ -114,8 +132,6 @@ function onMouseDown(){
 function cancelPainting(){
   isPainting=false;
 }
-
-
 
 function onLineWidthChange(event) {
   console.log(event.target.value);
@@ -141,3 +157,23 @@ function onColorClick(event){
 
   color.value=colorValue;
 }
+
+// function onClick(event){
+//   console.log(event);
+
+//   ctx.beginPath();
+
+//   ctx.moveTo(0,0);
+//   const color= colors[Math.floor(Math.random()*colors.length)]
+
+//   ctx.strokeStyle= color;
+
+//   ctx.lineTo(event.offsetX, event.offsetY);
+//   ctx.stroke();//when u make line u need to stroke
+// }
+
+// canvas.addEventListener("click", onClick);
+
+
+
+
